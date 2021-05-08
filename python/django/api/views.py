@@ -21,9 +21,9 @@ class TodoManager(APIView):
                 return Response(status=400)
             todo = Todo(request.data['task'])
             self.todos.append(todo)
-            return JsonResponse(data=todo, encoder=TodoSerializer, safe=False)
-        if not request.data or not "is_finished" in request.data:
-            return Response(status=400)
-        todo = self.todos[id]
-        todo.is_finished = request.data['is_finished']
+        else:
+            if not request.data or not "is_finished" in request.data:
+                return Response(status=400)
+            todo = self.todos[id]
+            todo.is_finished = request.data['is_finished']
         return JsonResponse(data=todo, encoder=TodoSerializer, safe=False)
