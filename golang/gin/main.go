@@ -57,6 +57,7 @@ func UpdateTodo(c *gin.Context) {
 }
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
 	r.GET("/todo", GetTodos)
